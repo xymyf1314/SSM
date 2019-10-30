@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"/>
+    <typeAliases>
+        <!--<typeAlias type="com.neuedu.entity.Admin" alias="Admin"></typeAlias>-->
+        <package name="com.neuedu.ssm.entity"/>
+    </typeAliases>
+
+    <mappers>
+        <!--<mapper resource="AdminMapper.xml"/>-->
+        <package name="com.neuedu.ssm.mapper"/>
+        <!--<mapper resource="com.neuedu.mapper.AdminMapper"></mapper>-->
+    </mappers>
+</configuration>

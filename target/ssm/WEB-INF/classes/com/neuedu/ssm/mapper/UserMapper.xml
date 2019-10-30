@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.ssm.mapper.UserMapper">
+    <select id="findAll" resultMap="res2">
+        select id,
+               user_name,
+               user_password,
+               user_grade,
+               user_phone,
+               user_address,
+               user_register_date,
+               disable
+        from t_user
+    </select>
+    <resultMap id="res2" type="User">
+        <id property="id" column="id" javaType="Integer"/>
+        <result property="userName" column="user_name" javaType="String"/>
+        <result property="userPassword" column="user_password" javaType="String"/>
+        <result property="userGrade" column="user_grade" javaType="Integer"/>
+        <result property="userPhone" column="user_phone" javaType="String"/>
+        <result property="userAddress" column="user_address" javaType="String"/>
+        <result property="userRegisterDate" column="user_register_date"/>
+        <result property="disable" column="disable" javaType="integer"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!-- 配置注解扫描 -->
+    <context:component-scan
+            base-package="com.neuedu.ssm.controller" />
+    <context:annotation-config />
+
+    <!-- 支持上传文件 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+    <!-- 配置Json转换器 -->
+    <bean id="stringConverter"
+          class="org.springframework.http.converter.StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=utf-8</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="jsonConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+    <bean
+            class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="stringConverter" />
+                <ref bean="jsonConverter" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- 拦截器的配置 -->
+    <!-- <mvc:interceptors>
+    	<mvc:interceptor>
+    	/**：包括路径及其子路径
+    		如果是/admin/*-拦截的是/admin/add,/admin/list,/admin/user/add不会被拦截
+    		如果是/**-以上所有均被拦截
+
+    		<mvc:mapping path="/**"/>
+    		不被拦截url路径
+    		<mvc:exclude-mapping path="index.jsp"/>
+    		<bean class="com.neuedu.ssm.interceptor.LoginInterceptor">
+    			<property name="allowPaths">
+    				<list>
+    					<value>login.do</value>
+    				</list>
+    			</property>
+    		</bean>
+    	</mvc:interceptor>
+    </mvc:interceptors> -->
+</beans>
